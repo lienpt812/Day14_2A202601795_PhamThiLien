@@ -3,111 +3,111 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Day 14 Evaluation Demo</title>
+  <title>Demo Đánh Giá AI - Ngày 14</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="app-header">
     <div>
-      <p class="eyebrow">AI Evaluation & Benchmarking Pipeline</p>
-      <h1>Northstar Student Services RAG Demo</h1>
+      <p class="eyebrow">Pipeline Đánh Giá AI & Benchmark</p>
+      <h1>Demo RAG Dịch Vụ Sinh Viên Northstar</h1>
     </div>
     <div class="status-pill">
       <span class="status-dot"></span>
-      42 tests passed
+      42 test đã pass
     </div>
   </header>
 
   <main>
-    <section class="summary-grid" aria-label="Benchmark summary">
+    <section class="summary-grid" aria-label="Tổng quan benchmark">
       <article class="metric-tile accent-teal">
-        <span class="tile-label">Pass Rate</span>
+        <span class="tile-label">Tỷ Lệ Pass</span>
         <strong id="passRate">75.0%</strong>
-        <span class="tile-note">15 / 20 cases passed</span>
+        <span class="tile-note">15 / 20 case đạt</span>
       </article>
       <article class="metric-tile accent-green">
         <span class="tile-label">Context Recall</span>
         <strong>0.963</strong>
-        <span class="tile-note">Retriever found evidence</span>
+        <span class="tile-note">Retriever lấy được evidence</span>
       </article>
       <article class="metric-tile accent-blue">
         <span class="tile-label">Context Precision</span>
         <strong>0.963</strong>
-        <span class="tile-note">Evidence ranked early</span>
+        <span class="tile-note">Evidence đứng sớm trong ranking</span>
       </article>
       <article class="metric-tile accent-red">
-        <span class="tile-label">Weakest Metric</span>
+        <span class="tile-label">Metric Yếu Nhất</span>
         <strong>0.694</strong>
-        <span class="tile-note">Answer Relevance</span>
+        <span class="tile-note">Độ liên quan của câu trả lời</span>
       </article>
     </section>
 
-    <nav class="tabs" aria-label="Demo sections">
-      <button class="tab-button active" data-tab="overview">Overview</button>
-      <button class="tab-button" data-tab="cases">Cases</button>
-      <button class="tab-button" data-tab="failures">Failures</button>
-      <button class="tab-button" data-tab="metrics">Metrics</button>
-      <button class="tab-button" data-tab="deliverables">Deliverables</button>
+    <nav class="tabs" aria-label="Các phần demo">
+      <button class="tab-button active" data-tab="overview">Tổng Quan</button>
+      <button class="tab-button" data-tab="cases">20 Tình Huống</button>
+      <button class="tab-button" data-tab="failures">Lỗi Chính</button>
+      <button class="tab-button" data-tab="metrics">Ý Nghĩa Chỉ Số</button>
+      <button class="tab-button" data-tab="deliverables">File Nộp</button>
     </nav>
 
     <section id="overview" class="tab-panel active">
       <div class="section-heading">
-        <h2>Benchmark Snapshot</h2>
-        <p>Actual results from `artifacts/benchmark_results.json`.</p>
+        <h2>Tổng Quan Benchmark</h2>
+        <p>Kết quả thật lấy từ `artifacts/benchmark_results.json`.</p>
       </div>
       <div class="overview-layout">
         <div class="chart-panel">
-          <h3>Average Metrics</h3>
+          <h3>Điểm Trung Bình Các Metrics</h3>
           <div id="metricBars" class="bar-stack"></div>
         </div>
         <div class="chart-panel">
-          <h3>Outcome Split</h3>
+          <h3>Tỷ Lệ Kết Quả</h3>
           <div class="donut-wrap">
-            <div class="donut" aria-label="75 percent pass rate"></div>
+            <div class="donut" aria-label="Tỷ lệ pass 75 phần trăm"></div>
             <div>
               <strong>75.0%</strong>
-              <span>pass rate</span>
+              <span>tỷ lệ pass</span>
             </div>
           </div>
           <div class="legend">
-            <span><i class="legend-pass"></i>Passed: 15</span>
-            <span><i class="legend-fail"></i>Failed: 5</span>
+            <span><i class="legend-pass"></i>Đạt: 15</span>
+            <span><i class="legend-fail"></i>Fail: 5</span>
           </div>
         </div>
       </div>
       <div class="insight-band">
-        <h3>Main Diagnosis</h3>
-        <p>Retrieval is strong, but generation and adversarial instruction-following need work. Context Recall and Precision are both 0.963, while Relevance is lower at 0.694 and Completeness is 0.715.</p>
+        <h3>Chẩn Đoán Chính</h3>
+        <p>Retrieval khá tốt, nhưng phần sinh câu trả lời và xử lý adversarial instruction cần cải thiện. Context Recall và Context Precision đều đạt 0.963, trong khi Relevance thấp hơn ở mức 0.694 và Completeness là 0.715.</p>
       </div>
     </section>
 
     <section id="cases" class="tab-panel">
       <div class="section-heading">
-        <h2>20 Golden Cases</h2>
-        <p>Filter by difficulty or result, then select a row to inspect metric meaning.</p>
+        <h2>20 Tình Huống Golden Dataset</h2>
+        <p>Lọc theo độ khó hoặc kết quả, sau đó chọn một dòng để xem chi tiết chỉ số.</p>
       </div>
-      <div class="toolbar" role="group" aria-label="Case filters">
-        <button class="seg-button active" data-filter="all">All</button>
+      <div class="toolbar" role="group" aria-label="Bộ lọc cases">
+        <button class="seg-button active" data-filter="all">Tất Cả</button>
         <button class="seg-button" data-filter="easy">Easy</button>
         <button class="seg-button" data-filter="medium">Medium</button>
         <button class="seg-button" data-filter="hard">Hard</button>
         <button class="seg-button" data-filter="adversarial">Adversarial</button>
-        <button class="seg-button" data-filter="failed">Failed</button>
+        <button class="seg-button" data-filter="failed">Fail</button>
       </div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
               <th>ID</th>
-              <th>Question</th>
-              <th>Difficulty</th>
+              <th>Câu hỏi</th>
+              <th>Độ khó</th>
               <th>Recall</th>
               <th>Precision</th>
               <th>Faith.</th>
               <th>Rel.</th>
               <th>Comp.</th>
-              <th>Overall</th>
-              <th>Status</th>
+              <th>Tổng</th>
+              <th>Trạng thái</th>
             </tr>
           </thead>
           <tbody id="caseRows"></tbody>
@@ -117,39 +117,39 @@
 
     <section id="failures" class="tab-panel">
       <div class="section-heading">
-        <h2>Top Failure Analysis</h2>
-        <p>The lowest-scoring cases are adversarial and expose safety/intent gaps.</p>
+        <h2>Phân Tích Các Lỗi Chính</h2>
+        <p>Các case điểm thấp nhất là adversarial, cho thấy khoảng trống ở safety và intent handling.</p>
       </div>
       <div id="failureGrid" class="failure-grid"></div>
     </section>
 
     <section id="metrics" class="tab-panel">
       <div class="section-heading">
-        <h2>Metric Meanings</h2>
-        <p>Use this section when explaining what each score tells us.</p>
+        <h2>Ý Nghĩa Các Chỉ Số</h2>
+        <p>Dùng phần này để giải thích mỗi chỉ số đang đo điều gì.</p>
       </div>
       <div id="metricExplainers" class="explainer-grid"></div>
     </section>
 
     <section id="deliverables" class="tab-panel">
       <div class="section-heading">
-        <h2>Submission Status</h2>
-        <p>Final checklist for the lab package.</p>
+        <h2>Trạng Thái Nộp Bài</h2>
+        <p>Checklist cuối cho bộ file lab.</p>
       </div>
       <div class="deliverable-list">
-        <div><span class="check">✓</span><strong>solution/solution.py</strong><small>Evaluation core copied and tested.</small></div>
-        <div><span class="check">✓</span><strong>golden_dataset.json</strong><small>20 QA pairs, validator PASS, 10/10 document coverage.</small></div>
-        <div><span class="check">✓</span><strong>exercises.md</strong><small>Part 1, Part 3, bonus 3.4 and 3.5 completed.</small></div>
-        <div><span class="check">✓</span><strong>reflection.md</strong><small>Three failures, 5 Whys and regression strategy completed.</small></div>
-        <div><span class="check">✓</span><strong>artifacts</strong><small>Actual answers and benchmark results generated.</small></div>
+        <div><span class="check">✓</span><strong>solution/solution.py</strong><small>Evaluation core đã copy và test xong.</small></div>
+        <div><span class="check">✓</span><strong>golden_dataset.json</strong><small>20 QA pairs, validator PASS, phủ đủ 10/10 tài liệu.</small></div>
+        <div><span class="check">✓</span><strong>exercises.md</strong><small>Hoàn thành Part 1, Part 3, bonus 3.4 và 3.5.</small></div>
+        <div><span class="check">✓</span><strong>reflection.md</strong><small>Đã có 3 failure analyses, 5 Whys và regression strategy.</small></div>
+        <div><span class="check">✓</span><strong>artifacts</strong><small>Đã sinh actual answers và benchmark results.</small></div>
       </div>
     </section>
   </main>
 
   <aside id="caseDrawer" class="drawer" aria-live="polite">
-    <button id="closeDrawer" class="icon-button" title="Close case details" aria-label="Close case details">×</button>
-    <p class="eyebrow">Selected Case</p>
-    <h2 id="drawerTitle">Select a row</h2>
+    <button id="closeDrawer" class="icon-button" title="Đóng chi tiết case" aria-label="Đóng chi tiết case">×</button>
+    <p class="eyebrow">Case Đang Chọn</p>
+    <h2 id="drawerTitle">Chọn một dòng</h2>
     <p id="drawerQuestion"></p>
     <dl id="drawerMetrics"></dl>
     <p id="drawerNote"></p>
