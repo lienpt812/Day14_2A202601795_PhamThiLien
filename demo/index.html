@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 14 Evaluation Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">AI Evaluation & Benchmarking Pipeline</p>
+      <h1>Northstar Student Services RAG Demo</h1>
+    </div>
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      42 tests passed
+    </div>
+  </header>
+
+  <main>
+    <section class="summary-grid" aria-label="Benchmark summary">
+      <article class="metric-tile accent-teal">
+        <span class="tile-label">Pass Rate</span>
+        <strong id="passRate">75.0%</strong>
+        <span class="tile-note">15 / 20 cases passed</span>
+      </article>
+      <article class="metric-tile accent-green">
+        <span class="tile-label">Context Recall</span>
+        <strong>0.963</strong>
+        <span class="tile-note">Retriever found evidence</span>
+      </article>
+      <article class="metric-tile accent-blue">
+        <span class="tile-label">Context Precision</span>
+        <strong>0.963</strong>
+        <span class="tile-note">Evidence ranked early</span>
+      </article>
+      <article class="metric-tile accent-red">
+        <span class="tile-label">Weakest Metric</span>
+        <strong>0.694</strong>
+        <span class="tile-note">Answer Relevance</span>
+      </article>
+    </section>
+
+    <nav class="tabs" aria-label="Demo sections">
+      <button class="tab-button active" data-tab="overview">Overview</button>
+      <button class="tab-button" data-tab="cases">Cases</button>
+      <button class="tab-button" data-tab="failures">Failures</button>
+      <button class="tab-button" data-tab="metrics">Metrics</button>
+      <button class="tab-button" data-tab="deliverables">Deliverables</button>
+    </nav>
+
+    <section id="overview" class="tab-panel active">
+      <div class="section-heading">
+        <h2>Benchmark Snapshot</h2>
+        <p>Actual results from `artifacts/benchmark_results.json`.</p>
+      </div>
+      <div class="overview-layout">
+        <div class="chart-panel">
+          <h3>Average Metrics</h3>
+          <div id="metricBars" class="bar-stack"></div>
+        </div>
+        <div class="chart-panel">
+          <h3>Outcome Split</h3>
+          <div class="donut-wrap">
+            <div class="donut" aria-label="75 percent pass rate"></div>
+            <div>
+              <strong>75.0%</strong>
+              <span>pass rate</span>
+            </div>
+          </div>
+          <div class="legend">
+            <span><i class="legend-pass"></i>Passed: 15</span>
+            <span><i class="legend-fail"></i>Failed: 5</span>
+          </div>
+        </div>
+      </div>
+      <div class="insight-band">
+        <h3>Main Diagnosis</h3>
+        <p>Retrieval is strong, but generation and adversarial instruction-following need work. Context Recall and Precision are both 0.963, while Relevance is lower at 0.694 and Completeness is 0.715.</p>
+      </div>
+    </section>
+
+    <section id="cases" class="tab-panel">
+      <div class="section-heading">
+        <h2>20 Golden Cases</h2>
+        <p>Filter by difficulty or result, then select a row to inspect metric meaning.</p>
+      </div>
+      <div class="toolbar" role="group" aria-label="Case filters">
+        <button class="seg-button active" data-filter="all">All</button>
+        <button class="seg-button" data-filter="easy">Easy</button>
+        <button class="seg-button" data-filter="medium">Medium</button>
+        <button class="seg-button" data-filter="hard">Hard</button>
+        <button class="seg-button" data-filter="adversarial">Adversarial</button>
+        <button class="seg-button" data-filter="failed">Failed</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Question</th>
+              <th>Difficulty</th>
+              <th>Recall</th>
+              <th>Precision</th>
+              <th>Faith.</th>
+              <th>Rel.</th>
+              <th>Comp.</th>
+              <th>Overall</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="caseRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="failures" class="tab-panel">
+      <div class="section-heading">
+        <h2>Top Failure Analysis</h2>
+        <p>The lowest-scoring cases are adversarial and expose safety/intent gaps.</p>
+      </div>
+      <div id="failureGrid" class="failure-grid"></div>
+    </section>
+
+    <section id="metrics" class="tab-panel">
+      <div class="section-heading">
+        <h2>Metric Meanings</h2>
+        <p>Use this section when explaining what each score tells us.</p>
+      </div>
+      <div id="metricExplainers" class="explainer-grid"></div>
+    </section>
+
+    <section id="deliverables" class="tab-panel">
+      <div class="section-heading">
+        <h2>Submission Status</h2>
+        <p>Final checklist for the lab package.</p>
+      </div>
+      <div class="deliverable-list">
+        <div><span class="check">✓</span><strong>solution/solution.py</strong><small>Evaluation core copied and tested.</small></div>
+        <div><span class="check">✓</span><strong>golden_dataset.json</strong><small>20 QA pairs, validator PASS, 10/10 document coverage.</small></div>
+        <div><span class="check">✓</span><strong>exercises.md</strong><small>Part 1, Part 3, bonus 3.4 and 3.5 completed.</small></div>
+        <div><span class="check">✓</span><strong>reflection.md</strong><small>Three failures, 5 Whys and regression strategy completed.</small></div>
+        <div><span class="check">✓</span><strong>artifacts</strong><small>Actual answers and benchmark results generated.</small></div>
+      </div>
+    </section>
+  </main>
+
+  <aside id="caseDrawer" class="drawer" aria-live="polite">
+    <button id="closeDrawer" class="icon-button" title="Close case details" aria-label="Close case details">×</button>
+    <p class="eyebrow">Selected Case</p>
+    <h2 id="drawerTitle">Select a row</h2>
+    <p id="drawerQuestion"></p>
+    <dl id="drawerMetrics"></dl>
+    <p id="drawerNote"></p>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>
